@@ -1,6 +1,13 @@
+"use client"
+
 import Image from "next/image";
+import Link from 'next/link';
+import { Button } from "@/app/components/ui/button";
+import { useState } from "react";
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -25,30 +32,39 @@ export default function Home() {
           </li>
         </ol>
 
+        {/* Shadcn/ui Button Demo Section */}
+        <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145]">
+          <h3 className="text-lg font-semibold mb-4 text-center">🏷 Shadcn/ui Button Demo</h3>
+          <div className="space-y-4">
+            <div className="text-center">
+              <p className="text-sm mb-2">Click count: {count}</p>
+              <Button onClick={() => setCount(count + 1)} className="w-full">
+                Click me! ({count})
+              </Button>
+            </div>
+            <div className="flex gap-2 flex-wrap justify-center">
+              <Button variant="default" size="sm">Default</Button>
+              <Button variant="outline" size="sm">Outline</Button>
+              <Button variant="secondary" size="sm">Secondary</Button>
+            </div>
+          </div>
+        </div>
+
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
+          <Link
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/about"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
+            📋 About Page
+          </Link>
+          <Link
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="/api/hello"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
-          </a>
+            🚀 API Route
+          </Link>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
